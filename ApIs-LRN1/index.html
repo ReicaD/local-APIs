@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script>
+    //   let url = "https://jsonplaceholder.typicode.com/users";
+    let url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a"
+      fetch(url)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          // data is returned inform of an array of objects
+          let cockTails = data;
+          console.log(cockTails);
+          // log the data in the console
+          let html = "";
+          //   looping through the author array and creating an html string
+          for (let i = 0; i < cockTails.length; i++) {
+            html += `  
+                <li>${cockTails[i].name}</li>
+              `;
+          }
+          document.getElementById("container").innerHTML =`<ul>${html}</ul>`;
+        });
+    </script>
+  </body>
+</html>
